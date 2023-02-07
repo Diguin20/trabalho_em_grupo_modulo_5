@@ -5,7 +5,7 @@ const app = express()
 
 const conn = require('./db/conn')
 
-const usuarios = require('./models/Users')
+const Users = require('./models/Users')
 
 app.engine('handlebars', engine())
 app.set('view engine', 'handlebars')
@@ -18,8 +18,15 @@ app.use(
 
 app.use(express.json())
 
-app.get('usuarios',(req,res)=>{
-    res.render('/')
+app.get('/',(req,res)=>{
+    res.render('login')
+})
+
+app.get('/financial_dashboard/create', function (req, res) {
+    res.render('cadastro')
+})
+app.get('/financial_dashboard/:id/dashboard', function(req, res) {
+    res.render('home')
 })
 
 

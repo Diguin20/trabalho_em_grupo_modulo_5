@@ -1,8 +1,8 @@
 const {Sequelize}= require('sequelize')
 
-const sequelize = new Sequelize('','root','souz@33531799',{
+const sequelize = new Sequelize('financial_dashboard','root','',{
     host:'localhost',
     dialect:'mysql',
     })
 
-    module.exports = sequelize
+module.exports = sequelize
