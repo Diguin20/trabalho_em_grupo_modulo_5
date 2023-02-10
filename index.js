@@ -17,7 +17,7 @@ app.use(
 )
 
 app.use(express.json())
-
+app.use( express.static( 'public' ) )
 app.get('/',(req,res)=>{
     res.render('login')
 })
@@ -31,21 +31,23 @@ app.get('/financial_dashboard/:id/dashboard', function(req, res) {
 
 //adicionado no dia 08/02
 
-const {eAdmin}= require('')
+/*const {eAdmin}= require('')*/
 
-app.post('/cadastro/updatecadastro', (req,res)=>{//adicionando usuarios a tabela
-    const nome= req.body.nome
+
+app.post('/financial_dashboard/create', (req,res)=>{//adicionando usuarios a tabela
+    const nome= req.body.name
     const login = req.body.login
     const senha= req.body.senha
 
-    const sql= `INSERT INTO usuarios(nome, login, senha) values(${nome},${login},${senha})`
+    const sql= `INSERT INTO usuarios(nome, login, senha) values("${nome}","${login}","${senha}")`
 
     conn.query(sql, (err)=>{
         if(err){
             console.log(err)
+            return
         }
-        res.redirect('login')
     })
+    res.redirect('/')
 })
 
 
